@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Betting Panel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #000;
+      color: white;
+    }
+    header {
+      background: #111;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .balance {
+      font-size: 16px;
+      color: #0f0;
+    }
+    .match {
+      background: #1a1a1a;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    .team-select {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .team {
+      flex: 1;
+      margin: 5px;
+      padding: 10px;
+      background: #2a2a2a;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .wallet-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #444;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .admin-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #222;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+    }
+    .popup input, .popup select {
+      width: 100%;
+      margin-top: 10px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>ম্যাচ বেটিং</div>
+  <div class="balance">ব্যালেন্স: ৳1000</div>
+</header>
+
+<div class="match">
+  <div>বাংলাদেশ vs ভারত</div>
+  <div class="team-select">
+    <div class="team" onclick="selectTeam('বাংলাদেশ')">বাংলাদেশ</div>
+    <div class="team" onclick="selectTeam('ভারত')">ভারত</div>
+  </div>
+  <input type="number" id="betAmount" placeholder="বেট এমাউন্ট লিখুন">
+  <button onclick="confirmBet()">বেট কনফার্ম করুন</button>
+</div>
+
+<div class="wallet-icon" onclick="toggleWalletPopup()">
+  💼
+</div>
+<div class="admin-button" onclick="adminLogin()">R</div>
+
+<!-- Wallet Popup -->
+<div class="popup" id="walletPopup">
+  <h3>ওয়ালেট অপশন</h3>
+  <select>
+    <option>বিকাশ</option>
+    <option>নগদ</option>
+  </select>
+  <p>নাম্বার: 01816395401</p>
+  <input type="text" placeholder="ট্রানজেকশন নাম্বার">
+  <button>রিকুয়েস্ট সেন্ড</button>
+</div>
+
+<!-- Admin login popup -->
+<div class="popup" id="adminPopup">
+  <h3>এডমিন পাসওয়ার্ড</h3>
+  <input type="password" id="adminPass" placeholder="পাসওয়ার্ড">
+  <button onclick="checkAdminPass()">লগইন</button>
+</div>
+
+<script>
+  function selectTeam(team) {
+    alert(team + " সিলেক্ট করা হয়েছে");
+  }
+
+  function confirmBet() {
+    const amount = document.getElementById('betAmount').value;
+    alert(amount + " টাকা বেট কনফার্ম করা হয়েছে");
+  }
+
+  function toggleWalletPopup() {
+    document.getElementById('walletPopup').style.display = 'block';
+  }
+
+  function adminLogin() {
+    document.getElementById('adminPopup').style.display = 'block';
+  }
+
+  function checkAdminPass() {
+    const pass = document.getElementById('adminPass').value;
+    if (pass === 'rezoan') {
+      alert('এডমিন প্যানেলে প্রবেশ করা হয়েছে (ডেমো)।');
+      // এখানে এডমিন UI redirect বা render হবে পরবর্তীতে
+    } else {
+      alert('ভুল পাসওয়ার্ড!');
+    }
+  }
+</script>
+
+</body>
+</html>
